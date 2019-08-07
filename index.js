@@ -31,7 +31,7 @@ const PORT = process.env.PORT || 3000;
 
 async function start(){
 	const password = 'YHsu0AkVgFVHOXWv';
-	const url = `mongodb+srv://kolya123:${password}@cluster0-3fjpw.mongodb.net/test?retryWrites=true&w=majority`
+	const url = `mongodb+srv://kolya123:${password}@cluster0-3fjpw.mongodb.net/shop`
 
 	try {
 		await mongoose.connect(url, {useNewUrlParser: true});
