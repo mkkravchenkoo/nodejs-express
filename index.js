@@ -5,6 +5,7 @@ const addRoutes = require('./routes/add');
 const coursesRoutes = require('./routes/courses');
 const cardRoutes = require('./routes/card');
 const path = require('path')
+const mongoose = require('mongoose');
 
 
 const app = express();
@@ -28,9 +29,25 @@ app.use('/card', cardRoutes);
 
 const PORT = process.env.PORT || 3000;
 
-app.listen(PORT, () => {
+async function start(){
+	const password = 'YHsu0AkVgFVHOXWv';
+	const url = `mongodb+srv://kolya123:${password}@cluster0-3fjpw.mongodb.net/test?retryWrites=true&w=majority`
 
-	console.log(`Server is running on port ${PORT}`)
-})
+	try {
+		await mongoose.connect(url, {useNewUrlParser: true});
+
+		app.listen(PORT, () => {
+			console.log(`Server is running on port ${PORT}`)
+		})
+
+	}catch (e) {
+		console.log(e)
+	}
+
+}
+
+start()
+
+
 
 
