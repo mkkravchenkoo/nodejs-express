@@ -12,7 +12,7 @@ class Course {
 
 	 async save(){
 
-		const courses = await this.getAll();
+		const courses = await Course.getAll();
 		courses.push(this.toJson());
 
 		return new Promise((resolve, reject) => {
@@ -39,7 +39,7 @@ class Course {
 		}
 	}
 
-	getAll(){
+	static getAll(){
 
 		return new Promise((resolve, reject) => {
 
