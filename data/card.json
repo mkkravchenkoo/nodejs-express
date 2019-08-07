@@ -1,1 +1,4 @@
-{"courses":[{"title":"React 16.8","price":"500","img":"https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1200px-React-icon.svg.png","id":"a4bb0e05-80bc-4dd6-8f09-102254c521a1","count":1},{"title":"Vuejs","price":"4001","img":"https://miro.medium.com/max/480/1*wqYF-8Dmh7LhtLkKfERc3Q.png","id":"d57bc638-570e-457a-8a93-d9f86cbc63be","count":2}],"price":4001}
+{
+  "courses": [],
+  "price": 0
+}
