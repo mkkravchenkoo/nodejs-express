@@ -26,16 +26,14 @@ if($card){
 			.then((card) => {
 				if(card.courses.length){
 					const html = card.courses.map((c) => {
-						return `
-							<tr>
+						return `<tr>
 								<td>${c.title}</td>
 								<td>${c.count}</td>
 								<td>
 								    <button class="btn btn-small js-remove" data-id="${c.id}">Delete</button>
 								</td>
-							</tr>
-					`
-					}).join();
+							</tr>`
+					}).join('');
 
 					$card.querySelector('tbody').innerHTML = html;
 					$card.querySelector('.price').textContent = toCurrency(card.price);
