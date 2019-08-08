@@ -9,7 +9,10 @@ const authRoutes = require('./routes/auth')
 
 const path = require('path')
 const mongoose = require('mongoose');
+const session = require('express-session');
 const User = require('./models/user');
+
+const varMiddleare = require('./middleware/variables')
 
 const app = express();
 
@@ -36,6 +39,13 @@ app.use(async (req, res, next) => {
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended:true}));
+app.use(session({
+	secret: 'some secret value',
+	resave:false,
+	saveUninitialized:false
+}));
+
+app.use(varMiddleare);
 
 app.use('/',homeRoutes);
 app.use('/add', addRoutes);
