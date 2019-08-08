@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/mkkravchenkoo/nodejs-express#readme",
   "dependencies": {
+    "connect-mongodb-session": "^2.2.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "express-session": "^1.16.2",
