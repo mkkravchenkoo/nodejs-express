@@ -13,14 +13,12 @@ const flash = require('connect-flash')
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session)
-const User = require('./models/user');
 
 const varMiddleare = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
 
 
-const password = 'YHsu0AkVgFVHOXWv';
-const MONGODB_URI = `mongodb+srv://kolya123:${password}@cluster0-3fjpw.mongodb.net/shop`
+const keys = require('./keys')
 
 const app = express();
 
@@ -31,29 +29,19 @@ const hbs = exphbs.create({
 
 const store = new MongoStore({
 	collection: 'sessions',
-	uri:MONGODB_URI
+	uri:keys.MONGODB_URI
 })
 
 app.engine('hbs', hbs.engine);
 app.set('view engine', 'hbs');
 app.set('views', 'views');
 
-// app.use(async (req, res, next) => {
-// 	try {
-// 		const user =  await User.findById('5d4be3eededfb917f0094b69');
-// 		req.user = user;
-// 		next();
-// 	}catch (e) {
-// 		console.log(e)
-// 	}
-//
-// });
 
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({extended:true}));
 app.use(session({
-	secret: 'some secret value',
+	secret: keys.SESSION_SECRET,
 	resave:false,
 	saveUninitialized:false,
 	store:store
@@ -78,21 +66,7 @@ const PORT = process.env.PORT || 3000;
 async function start(){
 
 	try {
-		await mongoose.connect(MONGODB_URI, {useNewUrlParser: true, useFindAndModify: false});
-
-		// const candidate = await User.findOne();
-		//
-		// if(!candidate){
-		// 	const user = new User({
-		// 		email: 'test@mail.ru',
-		// 		name:'Kolya',
-		// 		cart:{
-		// 			items:[]
-		// 		}
-		// 	});
-		//
-		// 	await user.save()
-		// }
+		await mongoose.connect(keys.MONGODB_URI, {useNewUrlParser: true, useFindAndModify: false});
 
 		app.listen(PORT, () => {
 			console.log(`Server is running on port ${PORT}`)
