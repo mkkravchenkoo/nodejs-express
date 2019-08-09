@@ -31,7 +31,7 @@
         {{#if registerError}}
             <p>{{registerError}}</p>
         {{/if}}
-        <form action="/auth/register" method="post">
+        <form action="/auth/register" method="post" novalidate>
             <div class="input-field">
                 <input id="remail" type="email" name="email" class="validate" required>
                 <label for="remail">email</label>
@@ -43,7 +43,7 @@
                 <span class="helper-text" data-error="wrong name"></span>
             </div>
             <div class="input-field">
-                <input id="rpassword" type="password" name="repeat" class="validate" required>
+                <input id="rpassword" type="password" name="confirm" class="validate" required>
                 <label for="rpassword">password</label>
                 <span class="helper-text" data-error="wrong"></span>
             </div>
