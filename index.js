@@ -9,6 +9,7 @@ const authRoutes = require('./routes/auth')
 
 const path = require('path')
 const scrf = require('csurf');
+const flash = require('connect-flash')
 const mongoose = require('mongoose');
 const session = require('express-session');
 const MongoStore = require('connect-mongodb-session')(session)
@@ -59,6 +60,7 @@ app.use(session({
 }));
 
 app.use(scrf());
+app.use(flash());
 
 app.use(varMiddleare);
 app.use(userMiddleware);

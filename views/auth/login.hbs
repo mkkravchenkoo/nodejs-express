@@ -7,6 +7,9 @@
         </ul>
     </div>
     <div id="login" class="col s12">
+        {{#if loginError}}
+            <p>{{loginError}}</p>
+        {{/if}}
         <form action="/auth/login" method="post">
             <div class="input-field">
                 <input id="email" type="email" name="email" class="validate" required>
@@ -23,6 +26,9 @@
         </form>
     </div>
     <div id="register" class="col s12">
+        {{#if registerError}}
+            <p>{{registerError}}</p>
+        {{/if}}
         <form action="/auth/register" method="post">
             <div class="input-field">
                 <input id="remail" type="email" name="email" class="validate" required>
