@@ -14,6 +14,8 @@ const MongoStore = require('connect-mongodb-session')(session)
 const User = require('./models/user');
 
 const varMiddleare = require('./middleware/variables')
+const userMiddleware = require('./middleware/user')
+
 
 const password = 'YHsu0AkVgFVHOXWv';
 const MONGODB_URI = `mongodb+srv://kolya123:${password}@cluster0-3fjpw.mongodb.net/shop`
@@ -56,6 +58,7 @@ app.use(session({
 }));
 
 app.use(varMiddleare);
+app.use(userMiddleware);
 
 app.use('/',homeRoutes);
 app.use('/add', addRoutes);
