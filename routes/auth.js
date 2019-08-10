@@ -1,4 +1,4 @@
-const {Router} = require('express')
+ const {Router} = require('express')
 const bcrypt = require('bcryptjs')
 const nodemailer = require('nodemailer')
 const crypto = require('crypto');
@@ -73,9 +73,7 @@ router.post('/login', async (req, res) => {
 
 router.post('/register', registerValidators, async (req, res) => {
 	try {
-		const {email, name, password, confirm} = req.body;
-
-		const candidate = await User.findOne({email});
+		const {email, name, password} = req.body;
 
 		const errors = validationResult(req);
 		if(!errors.isEmpty()){
@@ -83,18 +81,15 @@ router.post('/register', registerValidators, async (req, res) => {
 			return res.status(422).redirect('/auth/login#register')
 		}
 
-		if(candidate){
-			req.flash('registerError', 'User is already exist!');
-			res.redirect('/auth/login#register')
-		}else{
-			const hashPassword = await bcrypt.hash(password, 10)
-			const user =  new User({
-				email, name, password: hashPassword, cart:{items:[]}
-			})
-			await user.save();
-			res.redirect('/auth/login#login')
-			await transporter.sendMail(regEmail(email));
-		}
+
+		const hashPassword = await bcrypt.hash(password, 10)
+		const user =  new User({
+			email, name, password: hashPassword, cart:{items:[]}
+		})
+		await user.save();
+		res.redirect('/auth/login#login')
+		await transporter.sendMail(regEmail(email));
+
 
 	}catch (e) {
 		console.log(e)
