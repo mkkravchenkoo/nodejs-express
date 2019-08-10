@@ -16,6 +16,7 @@ const MongoStore = require('connect-mongodb-session')(session)
 
 const varMiddleare = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
+const errorhandler = require('./middleware/error')
 
 
 const keys = require('./keys')
@@ -60,6 +61,7 @@ app.use('/courses', coursesRoutes);
 app.use('/card', cardRoutes);
 app.use('/orders', ordersRoutes);
 app.use('/auth', authRoutes);
+app.use(errorhandler);
 
 
 const PORT = process.env.PORT || 3000;
