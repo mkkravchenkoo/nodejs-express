@@ -1,5 +1,7 @@
 const express = require('express');
 const exphbs = require('express-handlebars');
+const helmet = require('helmet')
+const compression = require('compression')
 const homeRoutes = require('./routes/home');
 const addRoutes = require('./routes/add');
 const coursesRoutes = require('./routes/courses');
@@ -55,6 +57,8 @@ app.use(session({
 app.use(fileMiddleware.single('avatar'));
 app.use(scrf());
 app.use(flash());
+app.use(helmet());
+app.use(compression());
 
 app.use(varMiddleare);
 app.use(userMiddleware);
