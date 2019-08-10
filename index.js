@@ -6,6 +6,7 @@ const coursesRoutes = require('./routes/courses');
 const cardRoutes = require('./routes/card');
 const ordersRoutes = require('./routes/orders')
 const authRoutes = require('./routes/auth')
+const profileRoutes = require('./routes/profile')
 
 const path = require('path')
 const scrf = require('csurf');
@@ -61,6 +62,7 @@ app.use('/courses', coursesRoutes);
 app.use('/card', cardRoutes);
 app.use('/orders', ordersRoutes);
 app.use('/auth', authRoutes);
+app.use('/profile', profileRoutes);
 app.use(errorhandler);
 
 
