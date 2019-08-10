@@ -1,10 +1,14 @@
 <h1>Profile</h1>
 <div class="row">
 	<div class="col s6">
-		<img src="" alt="img">
+		{{#if user.avatarUrl}}
+		<img src="/{{user.avatarUrl}}" alt="">
+			{{else}}
+			<p>No avatar</p>
+		{{/if}}
 	</div>
 	<div class="col s6">
-		<form action="/profile" method="post">
+		<form action="/profile" enctype="multipart/form-data" method="post">
 			<p><strong>Email: {{user.email}}</strong></p>
 			<div class="input-field">
 				<input id="name" type="text" name="name" class="validate" required value="{{user.name}}">
@@ -17,12 +21,11 @@
 					<input type="file" name="avatar">
 				</div>
 				<div class="file-path-wrapper">
-					<input class="file-path validate" type="text" placeholder="Upload your avatar">
+					<input class="file-path validate" type="text" name="avaurl" placeholder="Upload your avatar">
 				</div>
 			</div>
 			<input type="hidden" name="_csrf" value="{{csrf}}">
-
-			<button class="btn">Change</button>
+			<button type="submit" class="btn">Change</button>
 		</form>
 	</div>
 </div>

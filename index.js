@@ -18,6 +18,7 @@ const MongoStore = require('connect-mongodb-session')(session)
 const varMiddleare = require('./middleware/variables')
 const userMiddleware = require('./middleware/user')
 const errorhandler = require('./middleware/error')
+const fileMiddleware = require('./middleware/file')
 
 
 const keys = require('./keys')
@@ -42,6 +43,7 @@ app.set('views', 'views');
 
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
 app.use(express.urlencoded({extended:true}));
 app.use(session({
 	secret: keys.SESSION_SECRET,
@@ -50,6 +52,7 @@ app.use(session({
 	store:store
 }));
 
+app.use(fileMiddleware.single('avatar'));
 app.use(scrf());
 app.use(flash());
 
