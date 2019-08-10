@@ -24,3 +24,9 @@ exports.registerValidators = [
 	}).trim(),
 	body('name').isLength({min:3}).withMessage('Name must be more than 3 symbols').trim()
 ]
+
+exports.courseValidators = [
+	body('title').isLength({min:3}).withMessage('Minimum 3 symbols').trim(),
+	body('price').isNumeric().withMessage('Numeric must be'),
+	body('img', 'Enter valid url').isURL()
+]
